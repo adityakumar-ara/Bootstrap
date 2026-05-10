@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Open Form Modal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .modal-header {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5 text-center">
+        <h2>Aapka Page Content Yahan Hoga</h2>
+        <p>Form automatically pop-up ho jayega...</p>
+        
+        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#autoFormModal">
+            Open Form Again
+        </button>
+    </div>
+
+    <div class="modal fade" id="autoFormModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title">Registration Form</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="directForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message/Remarks</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Write something..."></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">Submit Data</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Page load hote hi modal ko open karne ka script
+        document.addEventListener("DOMContentLoaded", function() {
+            // Modal element ko select karein
+            var myModalElement = document.getElementById('autoFormModal');
+            
+            // Bootstrap modal instance banayein
+            var myModal = new bootstrap.Modal(myModalElement);
+            
+            // Modal ko show karein
+            myModal.show();
+        });
+
+        // Form submit hone par handle karne ke liye (Optional)
+        document.getElementById('directForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Form submitted successfully!");
+            
+            // Submit ke baad modal band karne ke liye
+            var modal = bootstrap.Modal.getInstance(document.getElementById('autoFormModal'));
+            modal.hide();
+        });
+    </script>
+
+</body>
+</html>
